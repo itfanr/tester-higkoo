@@ -1,0 +1,63 @@
+http://linux.chinaitlab.com/special/linuxcom/
+Ubuntu: sudo 以管理员身份运行  CentOS: su 以管理员身份运行 
+perl -t 运行Perl脚本，后缀.pl。
+which httpd 查看httpd的安装目录。
+yum install 在线安装。
+修改机器名：
+/etc/sysconfig/network
+hostname yourname.yourdomain
+/etc/hosts
+查看机器配置：
+dmidecode  //非常详细的信息
+dmesg
+
+more /proc/cpuinfo  //查看CPU信息
+more /proc/meminfo  //查看内存信息
+free
+top
+
+df  //查看硬盘大小及挂载情况 df -hl
+pwd //查看硬盘类型及所在位置
+cat /proc/ide/hda/capacity    //查看hda硬盘大小（Byte）
+ls /proc/scsi/
+cat /etc/fstab
+parted -l
+
+ethtool  //查看网卡信息，譬如" ethtool eth0 "
+ifconfig //网卡软信息
+
+合一：“ cat /proc/cpuinfo && free && df && ethtool eth0 ”
+
+使用 #cat /etc/issue 命令 查看linux版本
+
+使用 # uname –a 命令，查看内核版本
+
+command1 ; command2   是command1执行后就执行command2
+command1 && command2  是command1执行成功才会执行command2
+错误：configure: error: cannot run /bin/sh ./config.sub  解决：sudo aptitude install libtool
+ /etc/init.d/apache2 start
+netstat -n|awk '/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'
+
+connects="netstat -n|awk "\''/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'\';
+watch -d -n 3 $connects
+watch -d -n 3 "netstat -n|awk "\''/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'\'
+统计80端口连接数　　netstat -nat|grep -i "80"|wc -l
+统计httpd协议连接数　　ps -ef|grep httpd|wc -l
+统计已连接上的，状态为“established'　　netstat -na|grep ESTABLISHED|wc -l
+find . -type f -size +1000000k   #查找指定大小文件
+
+系统一级目录	存放的内容
+bin	普通用户常用的程序如date命令
+dev	存放系统中所有设备的设备名
+home	存放普通用户的主目录如lele用户的主目录为/home/lele
+lib	存放内核和应用程序所有的库文件和模块，包括各种硬件的驱动程序。几乎所有的应用程序都会用到这个目录下的共享库。
+root	根用户的主目录
+usr	与用户有关的程序，或者用户安装的其它应用程序。这是linux系统中占用硬盘空间最大的目录
+boot	存放系统内核与引导管理程序的相关的文件
+etc	存放与系统硬件和软件有关的所有配置文件
+lost+found	根文件系统文件丢失和找到的孤立扇区
+mnt	挂接其它分区的挂接点，可能包括光盘（cdrom），软盘（floppy）和Windows分区、共享的分区和USB盘分区的挂接点。一般情况下是空的。
+proc	内存文件系统，对系统的诊断非常重要。这些信息是在内存中，由系统自己产生的。
+sbin	根用户用于系统管理的可执行程序
+tmp	系统中各个程序生成的临时文件，在下次启动时可以删除
+var	系统运行过程中文件内容会发生变化的目录子树，主要包括mail目录，各种服务器的数据文件，日志文件和假脱机打印系统的打印队列数据

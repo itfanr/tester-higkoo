@@ -1,0 +1,19 @@
+查看swap分区大小：
+cat /proc/swaps
+Filename                                Type            Size    Used    Priority
+/dev/mapper/VolGroup00-LogVol01         partition       524280  0       -1
+/tmp/swapfree                           file            262136  0       -2
+ 
+调整swap大小：
+dd if=/dev/zero of=swapfree bs=32k count=8192  (256MB)
+mkswap swapfree
+swapon /tmp/swapfree
+ 
+停止：
+swapoff /tmp/swapfree
+启动时加载:
+在/etc/fstab文件中，加入下行：
+/tmp/swapfree swap swap defaults 0 0
+ 
+检查swap
+#swapon -s

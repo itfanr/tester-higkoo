@@ -1,0 +1,21 @@
+官方说明：http://dev.mysql.com/doc/refman/5.1/zh/installing.html#installing-source
+groupadd mysql
+useradd -g mysql mysql
+gunzip < mysql-VERSION.tar.gz | tar -xvf -
+cd mysql-VERSION
+./configure --prefix=/usr/local/mysql
+make
+make install
+cp support-files/my-medium.cnf /etc/my.cnf
+cd /usr/local/mysql
+bin/mysql_install_db --user=mysql
+chown -R root  .
+chown -R mysql var
+chgrp -R mysql .
+bin/mysqld_safe --user=mysql &
+
+一些比较典型的配置参数：
+./configure 
+--prefix=/usr/local/mysql 
+localstatedir=/usr/local/mysql/data
+--with-unix-socket-path=/tmp/mysql.sock

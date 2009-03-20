@@ -1,0 +1,23 @@
+Ctrl-C     中断程式的执行。
+
+     Ctrl-Z     暂停程式的执行，稍後可下 fg 或 bg 指令继续，若未下 fg 或
+
+                bg 指令继续执行，该 process 仍会留在系统内。
+
+     Ctrl-S 或 Pause 键    萤幕暂停输出
+
+     Ctrl-Q     萤幕恢复输出
+
+     Ctrl-D     EOT (End of Transmission)
+
+  □ 有时候按了键盘，萤幕却没任何反应，看起来好像当机，可能就是不小心按了
+
+     Ctrl-S 键，此时按 Ctrl-Q 就可恢复正常。
+
+  □ 若你输入中文时，萤幕却出现乱码，请先於 UNIX 提示符号下打 stty pass8，
+
+     系统就不会过滤字元的 bit7(the most significant bit)。
+
+  □ 若你进编辑器或者其他的全萤幕程式，出现萤幕文字上卷的问题时，请先於
+
+     UNIX 提示符号下打 stty rows 24 或 resize 就可恢复正常。

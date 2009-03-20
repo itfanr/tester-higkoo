@@ -1,0 +1,36 @@
+()	小括号
+[]	中括号
+{}	大括号
+' '	单引号
+" "	双引号
+` `	反引号
+
+${var}，输出变量var的值
+(command)，直接执行命令，$(command)，相当于 执行`command`的返回值
+{ command;}，直接执行命令，注意"{"后必须有空格
+((C.Express))，两个小括号中支持C语言的运算，譬如：echo $(( 25<3 ? 2:3 )) 
+	${var:-string}，当var为空时，将输出string。
+	${var:=string}，当var为空时，将输出string，并将var赋值为string。
+	${var:+string}，当var非空时，将输出string。
+	${var:?string}，当var非空时，将输出var，否则输出错误信息（var:string）并退出脚本。
+$(var%pattern),$(var%%pattern),$(var#pattern),$(var##pattern) 
+
+“test”或”[ ]”命令:使用这二个命令用来测试条件是真还是假
+if [ $a != 1 ] || [ $b = 2 ]	
+即	
+if [[ $a != 1 || $b = 2 ]]
+
+if [ "$a" -lt "$b" ]
+即
+(("$a" < "$b"))
+
+-eq   等于
+-ne    不等于
+-gt    大于
+-lt    小于
+-le    小于等于
+-ge   大于等于
+-z    空串
+=     两个字符相等
+!=    两个字符不等
+-n    非空串

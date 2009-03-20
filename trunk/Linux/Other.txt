@@ -1,0 +1,8 @@
+let i=i+1  #  ((i++))
+
+curl 获取URL返回值，支持Post。相关的还有：
+links\wget
+
+base64
+md5sum
+uuidgen

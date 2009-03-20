@@ -1,0 +1,7 @@
+kill    停止处理程序，通常先用 ps 命令查得 Process ID，再杀之
+
+        kill -9 立即停止一个 process
+
+        kill -9 -1  杀掉系统内所有属於自己的 process
+
+kill -9 `ps aux | grep jboss | cut -c9-14` 2>/dev/null

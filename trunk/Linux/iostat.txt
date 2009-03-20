@@ -1,0 +1,9 @@
+用iostat监视I/O子系统情况
+
+　　iostat是I/O statistics（输入/输出统计）的缩写，iostat工具将对系统的磁盘操作活动进行监视。它的特点是汇报磁盘活动统计情况，同时也会汇报出 CPU使用情况。同vmstat一样，iostat也有一个弱点，就是它不能对某个进程进行深入分析，仅对系统的整体情况进行分析。
+
+　　iostat的语法如下：iostat [ -c | -d ] [ -k ] [ -t ] [ -V ] [ -x [ device ] ] [ interval  [ count ] ]
+
+　　其中，-c为汇报CPU的使用情况；-d为汇报磁盘的使用情况；-k表示每秒按kilobytes字节显示数据；-t为打印汇报的时间；-v表示打印出版本信息和用法；-x device指定要统计的设备名称，默认为所有的设备；interval指每次统计间隔的时间；count指按照这个时间间隔统计的次数。
+
+　　譬如：iostat -d 1 10 

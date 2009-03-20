@@ -1,0 +1,28 @@
+bin	
+	启动和关闭 JBoss 的脚本。
+client
+	客户端与 JBoss 通信所需的 Java 库（ JARs ）。
+docs
+	配置的样本文件（数据库配置等）。
+docs/dtd
+	在 JBoss 中使用的各种 XML 文件的 DTD 。
+lib
+	一些 JAR ， JBoss 启动时加载，且被所有 JBoss 配置共享。（不要把你的库放在这里）
+server
+	各种 JBoss 配置。每个配置必须放在不同的子目录。子目录的名字表示配置的名字。 JBoss 包含 3 个默认的配置： minimial ， default 和 all ，在你安装时可以进行选择。
+server/all
+	JBoss 的完全配置，启动所有服务，包括集群和 IIOP 。
+server/default
+	JBoss 的默认配置。在没有在 JBoss 命令行中指定配置名称时使用。 ( 我们下载的 JBOSS5.0 Beta4 版本默认采用此配置 ) 。
+server/default/conf
+	JBoss 的配置文件。
+server/default/data
+	JBoss 的数据库文件。比如，嵌入的数据库，或者 JBossMQ
+server/default /deploy
+	JBoss 的热部署目录。放到这里的任何文件或目录会被 JBoss 自动部署。 EJB 、 WAR 、 EAR ，甚至服务。
+server/default /lib
+	一些 JAR ， JBoss 在启动特定配置时加载他们。 (default 和 minimial 配置也包含这个和下面两个目录。 )
+server/default/log
+	JBoss 的日志文件。
+server/default/tmp
+	JBoss 的临时文件。 

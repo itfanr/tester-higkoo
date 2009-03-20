@@ -1,0 +1,28 @@
+#! bin/bash
+echo "Enter a letter: a or b or c"
+read dist
+if [ $dist = "a" ]
+then
+	echo " You choose 'a'."
+elif [ $dist = "b" ]
+then
+	echo " You choose 'b'."
+elif [ $dist = "c" ]
+then
+tput blink
+	echo " You choose 'c'."
+else
+	echo " Please try again from given option only !!!! "
+fi
+
+
+    * -eq   等于
+    * -ne    不等于
+    * -gt    大于
+    * -lt    小于
+    * -le    小于等于
+    * -ge   大于等于
+    * -z    空串
+    * =     两个字符相等
+    * !=    两个字符不等
+    * -n    非空串

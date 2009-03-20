@@ -1,0 +1,20 @@
+œ¬‘ÿ£∫
+http://www.activestate.com/activeperl/downloads/
+
+≈‰÷√Mysql«˝∂Ø£∫
+http://johnbokma.com/perl/installing-dbd-mysql-active-state.html
+http://theoryx5.uwinnipeg.ca/ppms/
+%perl_home%\bin\ppm install http://theoryx5.uwinnipeg.ca/ppms/DBD-mysql.ppd
+%perl_home%\bin\perl -MCPAN -e "install CPAN"
+%perl_home%\bin\perl -MCPAN -e "install Curses"
+
+
+yum update perl
+perl -MCPAN -e install 'Bundle::CPAN'
+install Term::ReadKey
+install DBI
+install DBD::mysql
+install Curses
+install force Device::SerialPort
+
+http://crazytoon.com/2008/05/21/mysql-how-do-you-install-innotop-to-monitor-innodb-in-real-time/
