@@ -1,0 +1,29 @@
+chkconfig --list  #显示服务列表
+chkconfig --level 235 serverName off/on #开启或关闭指定服务
+linux os 将操作环境分为以下7个等级:
+
+CODE:
+    0:开机(请不要切换到此等级)
+　　1:单人使用者模式的文字界面。
+　　2:多人使用者模式的文字界面,不具有网络档案系统(NFS)功能。
+　　3:多人使用者模式的文字界面,具有网络档案系统(NFS)功能。
+　　4:某些发行版的linux使用此等级进入x windows system。
+　　5:某些发行版的linux使用此等级进入x windows system。
+　　6:重新启动。
+
+参数:
+　　--add 新增所指定的系统服务；
+　　--del 删除所指定的系统服务；
+　　--list 列出当前可从chkconfig指令管理的所有系统服务和等级代号；
+　　--level 指定该系统服务要在哪个执行等级中开启或关闭；
+　　on/off/reset 在指定的执行登记,开启/关闭/重置该系统服务。
+
+范例:
+　　1.查看在各种不同的执行等级中,各项服务的状况:
+	chkconfig --list
+　　2.列出系统服务apmd在各个执行等级的启动情况：
+	chkconfig --list apmd
+　　3.在执行等级2，3，5时，关闭apmd系统服务：
+	$chkconfig --level 235 apmd off
+　　4.在执行等级2，3，5时，开启apmd系统服务：
+	$chkconfig --level 235 apmd on

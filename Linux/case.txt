@@ -1,0 +1,22 @@
+　　case str in
+　　 pat1) commands1;;
+　　 pat2) commands2;;
+　　 pat3) commands3;;
+　　esac 
+
+################### 箭泌��
+SYSTEM=`uname -s` 
+case $SYSTEM in 
+    Linux) 
+        echo "My system is Linux" 
+        echo "Do Linux stuff here..." 
+    ;; 
+    FreeBSD) 
+        echo "My system is FreeBSD" 
+        echo "Do FreeBSD stuff here..." 
+    ;; 
+    *) 
+        echo "Unknown system : $SYSTEM" 
+        echo "I don't what to do..." 
+    ;; 
+esac  

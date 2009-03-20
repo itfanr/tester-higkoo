@@ -1,0 +1,13 @@
+CentOS:
+将文件/etc/inittab中的“id:5:initdefault:”5改为3，重启即可。
+初始化命令是x
+xstart
+Xconfigurator
+直接输入 "X&"，让一个 X server 在后台运行。
+init 3
+telinit 3
+
+Ubuntu:
+# sudo /etc/init.d/gdm stop    //关闭X Window
+# sudo /etc/init.d/gdm restart //重启X Window
+startx

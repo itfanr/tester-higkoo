@@ -1,0 +1,2 @@
+无法安装数据库：http://bugs.mysql.com/bug.php?id=24270
+解决办法：http://lists.mysql.com/commits/16544

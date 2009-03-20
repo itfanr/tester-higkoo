@@ -1,0 +1,18 @@
+linux 时间 时区 设置
+    date -s MM/DD/YY
+    date -s hh:mm
+http://hi.baidu.com/powerdj/blog/item/2b0ef103195497753812bb1e.html
+CMOS 设置为本地时间，/etc/default/rcS 中设置 UTC=NO
+
+查看和设定硬件时间 - hwclock命令
+hwclock的选项:
+
+--systohc
+将系统时间写入到硬件时钟. 也就是说, 将Hardware Clock调整到current System Time的值.
+-–hctosys
+将硬件时间写入到系统时间. 通常每次linux启动的时候, 都要执行该命令, 将硬件时间的值写到system time中.
+--adjust
+Add or subtract time from the Hardware Clock to account for systematic drift since the last time the clock was set or adjusted.
+硬件时钟通常不太精确, 每天会快或慢一定的时间. 着称为系统化漂移(systematic drift). hwclock的"adjust"功能可以纠正这种偏移.
+它的工作原理是, 根据用户多次调用hwclock –-set(或--systohc)跳转硬件时钟的历史记录计算时钟每天的漂移量, 得到一个adjust的值, 从而hwclock --adjust.
+这些设定硬件时钟的历史记录由hwclock保存在文件/etc/adjtime中, called the adjtime file.

@@ -1,0 +1,3 @@
+/etc/rc.d/init.d/mysqld restart
+service mysqld restart
+/usr/local/mysql/bin/mysqld_safe --user=root &

@@ -1,0 +1,6 @@
+CPU使用率：
+top -bn 1|awk -F, '/Cpu/ {print $4}'|awk -F % '{print 100-$1}'
+内存总量：
+cat /proc/meminfo|sed -n "1"p|awk '{print $1, $2*1024}'
+内存已用量：
+cat /proc/meminfo|head -n 2|awk '{if (NR==1) t=$2}{if (NR==2) u=$2}END{print (t-u)*1024}'

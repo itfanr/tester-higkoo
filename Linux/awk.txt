@@ -1,0 +1,110 @@
+top -bn 1|awk -F" " '/Cpu/ {print "Row:",NR,"words:",NF,"\n",$0}'
+#输出指定行及参数数量
+
+top -bn 5|awk -F, 'BEGIN{print "Start:"}/Cpu/ {print $4} END{print "Finished!"}'
+#BEGIN初始化，END结束。
+
+echo "2,3"|awk 'BEGIN{FS=",";print "add:";total=0} {print $0;total=$1+$2} END{printf("result:%.2f\n",total)}'
+#FS、printf
+
+top -bn 1|awk '{FS="(,|%)";if(NR==3) for(i=0;i<NF;i++){print $(i+1)}}'
+#FS、for
+
+awk '/2/' temp.txt 查找文件中包括2的行
+awk '/1/ {print $2}' temp.txt 查找文件中以2开头的行，打印第二个参数
+for (a in myarray )特殊用法：当对于 for 使用这种特殊的 "in" 形式时，awk 将 myarray 的每个现有下标依次赋值给 x
+	echo Hello World|awk '{s[1]=$1;s[2]=$2} END {for(x in s) print "$"x,s[x]}'
+		$1 Hello
+		$2 World
+	netstat -n|awk '/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'
+		FIN_WAIT_1 1
+		CLOSE_WAIT 6
+		ESTABLISHED 17
+
+1.awk的常规表达式元字符
+换码序列
+^ 在字符串的开头开始匹配
+$ 在字符串的结尾开始匹配
+. 与任何单个字符串匹配
+[ABC] 与[]内的任一字符匹配
+[A-Ca-c] 与A-C及a-c范围内的字符匹配（按字母表顺序）
+[^ABC] 与除[]内的所有字符以外的任一字符匹配
+Desk|Chair 与Desk和Chair中的任一个匹配
+[ABC][DEF] 关联。与A、B、C中的任一字符匹配，且其后要跟D、E、F中的任一个字符。
+* 与A、B或C中任一个出现0次或多次的字符相匹配
++ 与A、B或C中任何一个出现1次或多次的字符相匹配
+? 与一个空串或A、B或C在任何一个字符相匹配
+(Blue|Black) berry 合并常规表达式，与Blueberry或Blackberry相匹配
+
+2.awk算术运算符
+运算符 用途
+awk 'BEGIN{print 1/2}'
+------------------
+x^y x的y次幂
+x**y 同上
+x%y 计算x/y的余数（求模）
+x+y x加y
+x-y x减y
+x*y x乘y
+x/y x除y
+-y 负y(y的开关符号);也称一目减
+++y y加1后使用y(前置加）
+y++ 使用y值后加1（后缀加）
+--y y减1后使用y(前置减）
+y-- 使用后y减1(后缀减）
+x=y 将y的值赋给x
+x+=y 将x+y的值赋给x
+x-=y 将x-y的值赋给x
+x*=y 将x*y的值赋给x
+x/=y 将x/y的值赋给x x%=y 将x%y的值赋给x
+x^=y 将x^y的值赋给x
+x**=y 将x**y的值赋给x
+
+3.awk允许的测试：
+操作符 含义
+x==y x等于y
+x!=y x不等于y
+x>y x大于y
+x>=y x大于或等于y
+xx<=y x小于或等于y?
+x~re x匹配正则表达式re?
+x!~re x不匹配正则表达式re?
+
+4.awk的操作符(按优先级升序排列)
+= 、+=、 -=、 *= 、/= 、 %=
+||
+&&
+> >= < <= == != ~ !~
+xy (字符串连结，'x''y'变成"xy"）
++ -
+* / %
+++ --
+
+5.awk内置变量（预定义变量）
+NF 当前记录中的字段个数
+NR 已经读出的记录数
+OFMT 数字的输出格式 %.6g
+OFS 输出字段分隔符 空格
+ORS 输出的记录分隔符 新行
+RS 输入的记录他隔符 新行
+FILENAME 当前输入文件的名字
+FS 输入字段分隔符 空格
+
+6.awk的内置函数
+awk 'BEGIN{print length("abcde")}'
+length(string) 求串string中的字符个数
+substr(string,position,len) 返回一个以position开始len个字符的子串
+atan(x,y) x的余切(弧度)
+exp(x) e的x幂
+int(x) x的整数部分
+log(x) x的自然对数值
+sqrt(x) x的平方根
+srand(x) 初始化随机数发生器。
+system() 执行系统命令
+printf()
+sprintf()
+match(string，regexp) 在字符串string 中寻找符合regexp的最长、最靠左边的子字符串。返回值是regexp 在string 的开始位置，即index值。match函数将会设置系统变量RSTART等于index的值，系统变量RLENGTH 等于符合的字符个数。如果不符合，则会设置RSTART为0、RLENGTH 为- 1。
+sub(regexp,replacement,target) 在字符串target中找到符合regexp的最长最靠左的地方，然后用replacement代替最左右的regexp。
+substr()   awk 'BEGIN{print substr("washington",5,3)}' 返回ing。返回字符串string 的子字符串，这个子字符串的长度为length，从第start个位置开始。
+tolower()
+toupper()  echo `awk 'BEGIN{print toupper("hello")}'`

@@ -1,0 +1,12 @@
+在httpd.conf添加如下代码：
+
+<location /server-status>
+	SetHandler	server-status
+	Order	allow,deny
+	Deny from	nothing
+	Allow from	all
+</location>
+ExtendedStatus On
+
+添加以上代码，可以使用 http://ServerIP/server-status 访问。
+或http://ServerIP/server-status?auto

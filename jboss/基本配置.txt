@@ -1,0 +1,9 @@
+Jboss日志文件位置：server/default/conf/jboss-log4j.xml
+
+
+jmx-console 登录的用户名和密码设置 
+1. 去掉 /server/default/deploy/jmx-console.war/WEB-INF/jboss-web.xml 中的注释；
+2. 修改 /server/default/deploy/jmx-console.war/WEB-INF/web.xml，去掉security-constraint的注释；
+3. 由/server/default/config/login-config.xml中的application-policy name = "jmx-console"可看出登录的角色、用户等的信息分别在props目录下的jmx-console-roles.properties和jmx-console-users.properties文件中；
+4. 文件/server/default/conf/props/jmx-console-users.properties中记录了“admin=admin”即“用户名=密码”；
+5. 文件/server/default/conf/props/jmx-console-roles.properties中记录了“admin=JBossAdmin,HttpInvoker”即“用户名=角色,”；

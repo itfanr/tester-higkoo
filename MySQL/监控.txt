@@ -1,0 +1,4 @@
+http://jeremy.zawodny.com/mysql/mytop/
+
+SHOW PROCESSLIST ;
+SHOW STATUS ;

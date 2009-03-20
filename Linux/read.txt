@@ -1,0 +1,9 @@
+读取用户输入
+read
+默认将读取到的值赋给内建变量REPLY。
+
+read a  #把读取变量的值传给a变量
+read a b c  #把读取到的参数依次传给a,b,c
+read -a arrayname 把参数放到arrayname数组里
+read -p 打印提示并等待输入
+read -r 允许输入饮食反斜杠

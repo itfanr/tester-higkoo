@@ -1,0 +1,25 @@
+在linux系统中系统的计划任务是由crond服务完成得，你可以直接编辑/etc/crontab文件，也可以使用crontab的命令。下面是一个简单的事例：每天晚上12点清空/test中的内容。
+
+首先让把cron设置为开机运行的服务：
+# chkconfig crond on
+添加任务
+# crontab –e
+00 0 * * * /bin/rm -rf /test/*       
+
+crontab命令的说明：
+crontab -l 显示当前用户的系统调度 
+crontab -e 编辑用户的系统调度 
+crontab -r 删除某个系统调度 
+
+/etc/crontab文件的格式为： 
+00          23          *         *          *               调度命令 
+分(0-59)    小时(0-23)  天(1-31)  月(1-12)  星期第几天(0-6)   系统要完成的动作
+
+每天10：30更新系统时间：
+30 10 * * * /usr/sbin/ntpdate stdtime.gov.hk
+
+每隔10分钟执行一次教本：
+*/10 * * * * /path/xxx.sh
+
+每隔125分钟执行一次教本：
+5 */2 * * * /path/xxx.sh

@@ -1,0 +1,23 @@
+nohup /usr/local/jboss/bin/run.sh > /dev/null 2>&1 &
+
+用Jconsole监控Jboss：
+1. 添加启动参数，Linux修改bin/run.conf或run.sh，Windows修改run.bat：
+	JAVA_OPTS="$JAVA_OPTS 
+	-Dcom.sun.management.jmxremote.port=8950 
+	-Dcom.sun.management.jmxremote.authenticate=false 
+	-Dcom.sun.management.jmxremote.ssl=false"
+2. 加-b参数绑定IP地址，譬如：
+	run.sh/run.bat -b192.168.58.111
+	或JAVA_OPTS="$JAVA_OPTS -Djava.rmi.server.hostname=192.168.58.111"
+3. 在Jconsole里就可以用192.168.58.111:8950监控远程Jboss了。
+
+Java自带的DEMO： %Java_HOME%/bin/java.exe -Dcom.sun.management.jmxremote -jar %Java_HOME%/demo/jfc/Java2D/Java2Demo.jar
+
+需要指定帐户文件：
+-Dcom.sun.management.jmxremote.password.file=$JAVA_HOME/jre/lib/management/jmxremote.password
+-Dcom.sun.management.jmxremote.access.file=$JAVA_HOME/jre/lib/management/jmxremote.access
+
+JAVA_OPTS="$JAVA_OPTS -Djava.rmi.server.hostname=192.168.58.111 -Dcom.sun.management.jmxremote.password.file=$JAVA_HOME/jre/lib/management/jmxremote.password -Dcom.sun.management.jmxremote.port=8950 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+访问方式：
+192.168.58.111：8950
+service:jmx:rmi:///jndi/rmi://192.168.58.111:8950/jmxrmi

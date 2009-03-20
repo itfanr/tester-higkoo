@@ -1,0 +1,41 @@
+Tomcat启动实际上运行的是catalina.sh，日志指向logs/catalina.out，catalina.sh最末行指定了可指定的参数。
+Startup.sh和Shutdown.sh最终都是给catalina.sh传入参数执行任务的。
+Shell脚本里没有与性能直接相关参数设置，间接相关的是类似启动类型为Debug或Security。
+
+默认启动参数为：
+java 
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
+-Djava.util.logging.config.file=./conf/logging.properties 
+-Djava.endorsed.dirs=./endorsed 
+-classpath :./bin/bootstrap.jar 
+-Dcatalina.base=. 
+-Dcatalina.home=. 
+-Djava.io.tmpdir=./temp 
+org.apache.catalina.startup.Bootstrap start
+
+其它配置项都在Conf目录下。
+catalina.policy指定文件目录权限；
+catalina.properties加载了一些Jar包；
+logging.properties定义日志相关信息（日志级别、目录、类型等等）；
+context.xml指向Web.xml，被Server.xml的UserDatabase读取；
+Server.xml指定端口及应用程序目录appBase，这个配置最重要：Connector，主要是添加和修改这块；
+tomcat-users.xml保存Tomcat-user信息，默认没有添加用户；
+Web.xml里指定默认目档和MIME文件类型。
+
+默认配置不涉及JVM参数，需要在catalina.sh里进行设置，-Xms<size> JVM初始化堆的大小/-Xmx<size> JVM堆的最大值。
+譬如：
+JAVA_OPTS="$JAVA_OPTS -Xms128m -Xmx512m"
+
+Server.xml中Connector的配置：
+maxThreads
+	Tomcat使用线程来处理接收的每个请求。这个值表示Tomcat可创建的最大的线程数。
+acceptCount
+	指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理。
+connnectionTimeout
+	网络连接超时，单位：毫秒。设置为0表示永不超时，这样设置有隐患的。通常可设置为30000毫秒。
+minSpareThreads
+	Tomcat初始化时创建的线程数。
+maxSpareThreads
+	一旦创建的线程超过这个值，Tomcat就会关闭不再需要的socket线程。
+
+

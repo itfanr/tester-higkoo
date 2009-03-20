@@ -1,0 +1,36 @@
+()	小括号
+[]	中括号
+{}	大括号
+' '	单引号
+" "	双引号
+` `	反引号
+
+-eq   等于
+-ne    不等于
+-gt    大于
+-lt    小于
+-le    小于等于
+-ge   大于等于
+-z    空串
+=     两个字符相等
+!=    两个字符不等
+-n    非空串
+
+在Unix/Linux中，每一个 process 均有三个特殊的 file descriptor , 标准输入( standard input )、标准输出 ( standard output )、标准错误输出( standard error )。将 standard output 的结果写入文件。
+>>	将 standard output 的结果追加文件。
+>& 	定向包括 standard error 信息。
+>>&	&功能同上，输出包括standard error信息。
+同理，使用管道命令‘|’也可以加上&，将标准的错误信息也进行转向，如：
+command1 |& command2
+  command   >   filename   把把标准输出重定向到一个新文件中  
+  command   >>   filename   把把标准输出重定向到一个文件中(追加)  
+  command   1   >   fielname   把把标准输出重定向到一个文件中  
+  command   >   filename   2>&1   把把标准输出和标准错误一起重定向到一个文件中  
+  command   2   >   filename   把把标准错误重定向到一个文件中  
+  command   2   >>   filename   把把标准输出重定向到一个文件中(追加)  
+  command   >>   filename   2>&1   把把标准输出和标准错误一起重定向到一个文件中(追加)  
+
+前景、背景。
+正在运行的程序，按ctrl+Z将置与后台，并生成一个后台的ID。
+譬如：[1] 21304 后台ID为1，进程PID为21304。
+使用fg %1可将后台程序置到前台。使用jobs命令可查看后台运行的命令。

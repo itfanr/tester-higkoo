@@ -1,0 +1,39 @@
+替换：s命令
+	在整行范围内把regular替换为NewString。如果没有g标记，则只有每行第一个匹配的regular被替换成NewString
+		sed 's/regular/NewString/g' temp.txt 
+	加-i选项，直接操作到文件：
+		sed -i 's/regular/NewString/g' temp.txt 
+	将每行第一个匹配regular替换成NewString并打印出来。如果没有-n则先打印所有行。
+		sed -n 's/regular/NewString/p' temp.txt 
+	regular将被替换成regularNewString。 temp.txt
+		sed 's/regular/&NewString/' temp.txt
+	love被标记为1，所有loveable会被替换成lovers（able后缀改为rs），而且替换的行会被打印出来
+		sed -n 's/\(love\)able/\1rs/p'  temp.txt
+	不论什么字符，紧跟着s命令的都被认为是新的分隔符，所以，“#”在这里是分隔符，代替了默认的“/”分隔符。表示把所有10替换成100。
+		$ sed 's#10#100#g'
+
+删除：d命令
+	打印出删除包含regular的行的结果：
+		sed '/regular/d' temp.txt 
+	删除文件的第二行“
+		sed '2d' temp.txt
+	删除文件的第二行到末尾所有行”
+		sed '2,$d' temp.txt 
+	删除最后一行：
+		sed '$d' temp.txt
+
+多点编辑：e命令
+	(-e)选项允许在同一行里执行多条命令。如例子所示，第一条命令删除1至5行，第二条命令用regular替换NewString。
+		$ sed -e '1,5d' -e 's/regular/NewString/'temp.txt
+	和-e相同的功能，以赋值形式执行。
+		sed --expression='s/test/check/' --expression='/love/d' temp.txt
+
+从文件读入：r命令 
+	file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面。
+		sed '/test/r file' temp.txt
+写入文件：w命令
+	在temp.txt中所有包含test的行都被写入file里。
+		sed -n '/test/w file' temp.txt
+追加命令：a命令
+	sed '/^test/a\\b' temp.txt
+
