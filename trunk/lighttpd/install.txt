@@ -1,0 +1,31 @@
+cd /usr/local
+yum install pcre-devel
+wget http://www.lighttpd.net/download/lighttpd-1.4.22.tar.gz
+tar zxvf lighttpd-1.4.22.tar.gz
+cd lighttpd-1.4.22
+./configure --prefix=/usr/local/lighttpd
+mkdir /usr/local/lighttpd/conf
+cp doc/lighttpd.conf /usr/local/lighttpd/conf
+cd /usr/local/lighttpd
+groupadd lighttpd
+useradd -g lighttpd lighttpd
+mkdir ./www
+chown -R lighttpd.lighttpd ./www 
+
+mkdir ./lighttpdlogs
+chown -R lighttpd.lighttpd ./lighttpdlogs
+chmod 750 ./lighttpdlogs 
+cp /usr/local/lighttpd-1.4.22/doc/rc.lighttpd /etc/init.d/lighttpd
+chkconfig lighttpd on 
+
+vim /etc/init.d/lighttpd
+    # LIGHTTPD_CONFIG=/etc/sysconfig/lighttpd
+　　LIGHTTPD_CONFIG=/usr/local/lighttpd/conf/lighttpd.conf 
+vim /usr/local/lighttpd/conf/lighttpd.conf
+　　server.document-root = "/usr/local/lighttpd/www/"
+　　server.errorlog = "/usr/local/lighttpd/lighttpdlogs/lighttpd.error.log"　　
+　　accesslog.filename = "/usr/local/lighttpd/lighttpdlogs/access.log"
+　　server.username = "lighttpd"
+　　server.groupname = "lighttpd" 
+
+/usr/local/lighttpd/sbin/lighttpd -f /usr/local/lighttpd/conf/lighttpd.conf
