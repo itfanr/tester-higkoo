@@ -5,6 +5,7 @@
 
 最好是把这两者都直接改到/usr/local/jboss，而/usr/local/jboss是直接链接到指定的版本。
 这样直接修改/usr/local/jboss链接就可以切换不同版本了。
+如果都不行，最后一招就是把/usr/local/jboss/bin/run.conf里加一句JBOSS_HOME=JBOSS_HOME=/usr/local/jboss
 
 注意，修改了以上两个配置文件之后，当前的环境变量是没有变的。
 使用echo $JBOSS_HOME确定，不对用export JBOSS_HOME=/usr/local/jboss修改之。
