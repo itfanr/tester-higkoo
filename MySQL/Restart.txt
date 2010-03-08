@@ -1,3 +1,22 @@
+kill -9 `ps aux | grep mysql | cut -c9-14` 2>/dev/null
 /etc/rc.d/init.d/mysqld restart
 service mysqld restart
 /usr/local/mysql/bin/mysqld_safe --user=root &
+/usr/local/mysql/bin/mysqladmin shutdown
+
+修改密码：
+mysqladmin -u root password 'kingsoft'
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.20.%' IDENTIFIED BY 'kingsoft' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%' IDENTIFIED BY 'kingsoft' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'kingsoft' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'kingsoft' WITH GRANT OPTION;
+
+备份数据库：
+/usr/local/mysql/bin/mysqldump -R JustForTest > /tmp/JustForTest.sql
+还原数据库：
+/usr/local/mysql/bin/mysql -f front_distribution_db  < /tmp/JustForTest.sql
+
+备份表：
+/usr/local/mysql/bin/mysql -e "select * into outfile '/tmp/table.dump' from t_single_user_info;"
+还原表：
+/usr/local/mysql/bin/mysql front_distribution_db  < /tmp/JustForTest.sql

@@ -1,5 +1,6 @@
 yum install mdadm.x86_64
 mdadm --create --verbose /dev/md0 --level=raid0 --raid-devices=2 /dev/hda2 /dev/hda3
+mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb4 /dev/sda1
 mkfs.ext3 /dev/md0
 mount /dev/md0 /raid
 mdadm --detail /dev/md0

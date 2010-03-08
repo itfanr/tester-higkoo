@@ -1,4 +1,18 @@
 http://jeremy.zawodny.com/mysql/mytop/
 
-SHOW PROCESSLIST ;
-SHOW STATUS ;
+show variables;
+SHOW [full] PROCESSLIST
+SHOW full PROCESSLIST
+show global status;
+show [global] status;
+
+sh /opt/kingsoft/monitor/core/cron/autodefineserver.sh
+vi /opt/kingsoft/monitor/defined/conf
+mysqlUser=ksmysqlmonitor
+mysqlPasswd=kingsoftautotestmysql
+
+use mysql;
+grant select on *.* to ksmysqlmonitor@'localhost' identified by 'kingsoftautotestmysql';
+update user set Show_view_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
+update user set Super_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
+flush privileges; 

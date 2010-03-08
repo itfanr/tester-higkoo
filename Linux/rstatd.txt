@@ -1,20 +1,32 @@
-Average load  上一分钟同时处于“就绪”状态的平均进程数  
-Collision rate  每秒钟在以太网上检测到的冲突数  
-Context switches rate  每秒钟在进程或线程之间的切换次数  
-CPU utilization  CPU 的使用时间百分比  
-Disk rate  磁盘传输速率  
-Incoming packets error rate  接收以太网数据包时每秒钟接收到的错误数  
-Incoming packets rate  每秒钟传入的以太网数据包数  
-Interrupt rate  每秒内的设备中断数  
-Outgoing packets errors rate  发送以太网数据包时每秒钟发送的错误数  
-Outgoing packets rate  每秒钟传出的以太网数据包数  
-Page-in rate  每秒钟读入到物理内存中的页数  
-Page-out rate  每秒钟写入页面文件和从物理内存中删除的页数  
-Paging rate  每秒钟读入物理内存或写入页面文件的页数  
-Swap-in rate  正在交换的进程数  
-Swap-out rate  正在交换的进程数  
-System mode CPU utilization  在系统模式下使用 CPU 的时间百分比  
-User mode CPU utilization  在用户模式下使用 CPU 的时间百分比  
+TOP的结果：
+	0.3%	us 用户空间占用CPU百分比
+	1.0%	sy 内核空间占用CPU百分比
+	0.0%	ni 用户进程空间内改变过优先级的进程占用CPU百分比
+	98.7%	id 空闲CPU百分比
+	0.0%	wa 等待输入输出的CPU时间百分比
+	0.0%	hi 硬件中断：hardware IRQ 
+	0.0%	si 软件中断：software interrupts
+	0.0%	st （抢占时间）：steal (time given to other DomU instances)
+
+	
+rpc.rstatd的结果：
+	Average load  上一分钟同时处于“就绪”状态的平均进程数  
+	Collision rate  每秒钟在以太网上检测到的冲突数  
+	Context switches rate  每秒钟在进程或线程之间的切换次数  
+	CPU utilization  CPU 的使用时间百分比  
+	Disk rate  磁盘传输速率  
+	Incoming packets error rate  接收以太网数据包时每秒钟接收到的错误数  
+	Incoming packets rate  每秒钟传入的以太网数据包数  
+	Interrupt rate  每秒内的设备中断数  
+	Outgoing packets errors rate  发送以太网数据包时每秒钟发送的错误数  
+	Outgoing packets rate  每秒钟传出的以太网数据包数  
+	Page-in rate  每秒钟读入到物理内存中的页数  
+	Page-out rate  每秒钟写入页面文件和从物理内存中删除的页数  
+	Paging rate  每秒钟读入物理内存或写入页面文件的页数  
+	Swap-in rate  正在交换的进程数  
+	Swap-out rate  正在交换的进程数  
+	System mode CPU utilization  在系统模式下使用 CPU 的时间百分比  
+	User mode CPU utilization  在用户模式下使用 CPU 的时间百分比  
 
 
 

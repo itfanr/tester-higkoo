@@ -21,3 +21,11 @@ JAVA_OPTS="$JAVA_OPTS -Djava.rmi.server.hostname=192.168.58.111 -Dcom.sun.manage
 ∑√Œ ∑Ω Ω£∫
 192.168.58.111£∫8950
 service:jmx:rmi:///jndi/rmi://192.168.58.111:8950/jmxrmi
+
+
+  JAVA_OPTS="$JAVA_OPTS 
+  -server -Xms128m -Xmx1024m
+	-Dcom.sun.management.jmxremote.port=8950 
+	-Djava.rmi.server.hostname=192.168.58.114
+	-Dcom.sun.management.jmxremote.authenticate=false 
+	-Dcom.sun.management.jmxremote.ssl=false"

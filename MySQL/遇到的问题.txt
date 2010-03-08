@@ -1,2 +1,11 @@
 无法安装数据库：http://bugs.mysql.com/bug.php?id=24270
 解决办法：http://lists.mysql.com/commits/16544
+
+
+Neither host 'localhost.localdomain' nor 'localhost' could be looked up with
+查看/etc/hosts，内容如下：
+::1 localhost.localdomain localhost
+127.0.0.1 localhost.localdomain localhost  //加这一行！
+
+在[mysqld]下加一行：
+skip-name-resolve  //不检查机器名

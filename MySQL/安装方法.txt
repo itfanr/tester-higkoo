@@ -19,3 +19,10 @@ bin/mysqld_safe --user=mysql &
 --prefix=/usr/local/mysql 
 localstatedir=/usr/local/mysql/data
 --with-unix-socket-path=/tmp/mysql.sock
+
+
+
+checking for termcap functions library¡­ configure: error: No curses/termcap library found
+Òª°²×°ncurses
+/mnt/CentOS_5.3_Final/CentOS/ncurses-devel-5.5-24.20060715.x86_64.rpm
+
