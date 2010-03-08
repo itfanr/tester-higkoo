@@ -1,3 +1,11 @@
+看有几个核（每个核有不同的物理ID）：
+	cat /proc/cpuinfo | grep "physical id"
+使用本地安装源：
+http://hi.baidu.com/chif/blog/item/4d915a55d0b0f5cdb645ae37.html
+
+watch -d -n 3 "netstat -n|awk "\''/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'\';
+
+tracert iptraf hdparm finger
 http://linux.chinaitlab.com/special/linuxcom/
 Ubuntu: sudo 以管理员身份运行  CentOS: su 以管理员身份运行 
 perl -t 运行Perl脚本，后缀.pl。
@@ -10,12 +18,14 @@ hostname yourname.yourdomain
 查看机器配置：
 dmidecode  //非常详细的信息
 dmesg
-
+查看IP地址：
+ifconfig | awk '/inet/{print $2}' | awk -F: '{print $2}'
 more /proc/cpuinfo  //查看CPU信息
 more /proc/meminfo  //查看内存信息
 free
 top
 
+smartctl -i /dev/sda
 df  //查看硬盘大小及挂载情况 df -hl
 pwd //查看硬盘类型及所在位置
 cat /proc/ide/hda/capacity    //查看hda硬盘大小（Byte）
@@ -40,7 +50,8 @@ netstat -n|awk '/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'
 
 connects="netstat -n|awk "\''/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'\';
 watch -d -n 3 $connects
-watch -d -n 3 "netstat -n|awk "\''/^tcp/{++S[$NF]} END {for(a in S) print a,S[a]}'\'
+
+
 统计80端口连接数　　netstat -nat|grep -i "80"|wc -l
 统计httpd协议连接数　　ps -ef|grep httpd|wc -l
 统计已连接上的，状态为“established'　　netstat -na|grep ESTABLISHED|wc -l
@@ -61,3 +72,13 @@ proc	内存文件系统，对系统的诊断非常重要。这些信息是在内存中，由系统自己产生的。
 sbin	根用户用于系统管理的可执行程序
 tmp	系统中各个程序生成的临时文件，在下次启动时可以删除
 var	系统运行过程中文件内容会发生变化的目录子树，主要包括mail目录，各种服务器的数据文件，日志文件和假脱机打印系统的打印队列数据
+
+
+经常碰到需要修改主机名的情况，以下方法：（修改主机名有风险）
+method 1:
+   vi /etc/sysconfig/network 中修改hostname=***
+   执行： hostname ***
+method 2:
+echo "kernel.hostname=新名字" >> /etc/sysctl.conf
+然后
+        /sbin/sysctl -p /etc/sysctl.conf
