@@ -1,3 +1,4 @@
+<<<<<<< .mine
 TOP的结果：
 	0.3%	us 用户空间占用CPU百分比
 	1.0%	sy 内核空间占用CPU百分比
@@ -116,4 +117,124 @@ rpc.rstatd的结果：
 	txcmp/s 
 			Number of compressed packets transmitted per second.
 	rxmcst/s 
+=======
+TOP的结果：
+	0.3%	us 用户空间占用CPU百分比
+	1.0%	sy 内核空间占用CPU百分比
+	0.0%	ni 用户进程空间内改变过优先级的进程占用CPU百分比
+	98.7%	id 空闲CPU百分比
+	0.0%	wa 等待输入输出的CPU时间百分比
+	0.0%	hi 硬件中断：hardware IRQ 
+	0.0%	si 软件中断：software interrupts
+	0.0%	st （抢占时间）：steal (time given to other DomU instances)
+
+	
+rpc.rstatd的结果：
+	Average load  上一分钟同时处于“就绪”状态的平均进程数  
+	Collision rate  每秒钟在以太网上检测到的冲突数  
+	Context switches rate  每秒钟在进程或线程之间的切换次数  
+	CPU utilization  CPU 的使用时间百分比  
+	Disk rate  磁盘传输速率  
+	Incoming packets error rate  接收以太网数据包时每秒钟接收到的错误数  
+	Incoming packets rate  每秒钟传入的以太网数据包数  
+	Interrupt rate  每秒内的设备中断数  
+	Outgoing packets errors rate  发送以太网数据包时每秒钟发送的错误数  
+	Outgoing packets rate  每秒钟传出的以太网数据包数  
+	Page-in rate  每秒钟读入到物理内存中的页数  
+	Page-out rate  每秒钟写入页面文件和从物理内存中删除的页数  
+	Paging rate  每秒钟读入物理内存或写入页面文件的页数  
+	Swap-in rate  正在交换的进程数  
+	Swap-out rate  正在交换的进程数  
+	System mode CPU utilization  在系统模式下使用 CPU 的时间百分比  
+	User mode CPU utilization  在用户模式下使用 CPU 的时间百分比  
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+以下中文摘自Windows的Perfmon说明，英文摘自SysStat中的说明：
+处理器：
+	% Processor Time 
+			指处理器用来执行非闲置线程时间的百分比。计算方法是，测量范例间隔内非闲置线程活动的时间，用范例间隔减去该值。(每台处理器有一个闲置线程，该线程在没有其他线程可以运行时消耗周期)。这个计数器是处理器活动的主要说明器，显示在范例间隔时所观察的繁忙时间平均百分比。这个值是用 100% 减去该服务不活动的时间计算出来的。
+	% User Time 
+			指处理器处于用户模式的时间百分比。用户模式是为应用程序、环境分系统和整数分系统设计的有限处理模式。另一个模式为特权模式，它是为操作系统组件设计的并且允许直接访问硬件和所有内存。操作系统将应用程序线程转换成特权模式以访问操作系统服务。这个计数值将平均忙时作为示例时间的一部分显示。		
+	% Idle Time 
+			是处理器在采样期间空闲的时间的百分比。
+			Percentage of time that the CPU or CPUs were idle and the system did not have an outstanding disk I/O request. 
+	Interrupts/sec 
+			是处理器接收和处理硬件中断的平均速度，单位为每秒事例数。这不包括分开计数的延迟的进程调用(DPCs)。这个值说明生成中断的设备(如系统时钟、鼠标、磁盘驱动器、数据通讯线、网络接口卡和其他外缘设备)的活动。这些设备通常在完成任务或需要注意时中断处理器。正常线程执行因此被中断。系统时钟通常每 10 毫秒中断处理器一次，创建中断活动的背景。这个计数值显示用上两个实例中观察到的值之间的差除于实例间隔的持续时间所得的值。		
+	%user
+			Percentage of CPU utilization that occurred while executing at the user level (application). Note that this field includes time spent running virtual processors.
+	%usr
+			Percentage of CPU utilization that occurred while executing at the user level (application). Note that this field does NOT include time spent running virtual processors.
+	%nice 
+			Percentage of CPU utilization that occurred while executing at the user level with nice priority.
+	%system 
+			Percentage of CPU utilization that occurred while executing at the system level (kernel). Note that this field includes time spent servicing interrupts and softirqs.
+	%sys
+			Percentage of CPU utilization that occurred while executing at the system level (kernel). Note that this field does NOT include time spent servicing interrupts or softirqs.
+	%iowait 
+			Percentage of time that the CPU or CPUs were idle during which the system had an outstanding disk I/O request.
+	%steal 
+			Percentage of time spent in involuntary wait by the virtual CPU or CPUs while the hypervisor was servicing another virtual processor.
+	%irq
+			Percentage of time spent by the CPU or CPUs to service interrupts.
+	%soft
+			Percentage of time spent by the CPU or CPUs to service softirqs (software interrupts).
+	%guest
+			Percentage of time spent by the CPU or CPUs to run a virtual processor.
+	runq-sz 
+			Run queue length (number of tasks waiting for run time).
+	plist-sz 
+			Number of tasks in the process list.			
+内存：
+	Page Faults/sec 
+			是每秒钟出错页面的平均数量。由于每个错误操作中只有一个页面出错，计算单位为每秒出错页面数量，因此这也等于页面错误操作的数量。这个计数器包括硬错误(那些需要磁盘访问的)和软错误(在物理内存的其他地方找到的错误页)。许多处理器可以在有大量软错误的情况下继续操作。但是，硬错误可以导致明显的拖延。
+			Number of page faults (major + minor) made by the system per second. This is not a count of page faults that generate I/O, because some page faults can be resolved without I/O.
+	Pages/sec 
+			是指为解决硬页错误从磁盘读取或写入磁盘的速度。这个计数器是可以显示导致系统范围延缓类型错误的主要指示器。它是 Memory\\Pages Input/sec 和 Memory\\Pages Output/sec 的总和。是用页数计算的，以便在不用做转换的情况下就可以同其他页计数如: Memory\\Page Faults/sec 做比较，这个值包括为满足错误而在文件系统缓存(通常由应用程序请求)的非缓存映射内存文件中检索的页。
+	pgfree/s
+			(sar)Number of pages placed on the free list by the system per second.
+	Pages Input/sec 
+			是从磁盘取读页面以解析硬页面错误的速度。它显示读取操作的数量，它并不考虑每个操作的页面数量。当一个进程引用一个虚拟内存的页面，而此虚拟内存位于工作集以外或物理内存的其他位置，并且此页面必须从磁盘检索时，就会发生硬页面错误。当夜面发生错误时，系统尝试将多个连续页面读入内存以充分利用取读操作的优点。请比较 Memory\\Pages Input/sec 的值和  Memory\\Page Reads/sec 的值以便决定每个取读操作读入内存的平均页面数量。
+			(sar)Total number of kilobytes the system paged in from disk per second. Note: With old kernels (2.2.x) this value is a number of blocks per second (and not kilobytes).
+	Pages Output/sec 
+			是指为了释放物理内存空间而将页面写入磁盘的速度。只有在物理内存中更改时页面才会写回到磁盘上，因此页面可能只保留数据而不是代码。高速的页面输出可能表示内存不足。当物理内存不足时，Windows 会将页面写回到磁盘以便释放空间。这个计数器可以在不转换的情况下，显示页面数量并可以与其他页面计数进行比较。
+			(sar)Total number of kilobytes the system paged out to disk per second. Note: With old kernels (2.2.x) this value is a number of blocks per second (and not kilobytes).
+硬盘：
+	tps 
+			Total number of transfers per second that were issued to physical devices. A transfer is an I/O request to a physical device. Multiple logical requests can be combined into a single I/O request to the device. A transfer is of indeterminate size.
+	rtps 
+			Total number of read requests per second issued to physical devices.
+	wtps 
+			Total number of write requests per second issued to physical devices.
+	bread/s 
+			Total amount of data read from the devices in blocks per second. Blocks are equivalent to sectors with 2.4 kernels and newer and therefore have a size of 512 bytes. With older kernels, a block is of indeterminate size.
+	bwrtn/s 
+			Total amount of data written to devices in blocks per second.
+			
+网络：
+	Bytes Sent/sec 
+			是在每个网络适配器上发送的字节(包括帧字符)的速度。Network Interface\\Bytes Sent/sec 是 Network Interface\\Bytes Total/sec 的子集。
+	Bytes Received/sec 
+			是每个网络适配器上接收的字节的速率，包括帧字符在内。Network Interface\\Bytes Received/sec 是 Network Interface\\Bytes Total/sec 的子集。
+	Output Queue Length 
+			为输出数据列队(数据包)的长度。如果这个长于 2，即会出现延缓并且如果可能的话找出并解决瓶颈问题。由于请求是在这个操作由网络驱动程序接口规格(NDIS)列队，这永远会是 0。
+	Packets Received/sec 
+			为在网络界面接收数据包的速率。
+	Packets Sent/sec 
+			为在网络界面发送数据包的速率。		
+	rxpck/s
+			Total number of packets received per second.
+	txpck/s 
+			Total number of packets transmitted per second.
+	rxkB/s 
+			Total number of kilobytes received per second.
+	txkB/s 
+			Total number of kilobytes transmitted per second.
+	rxcmp/s 
+			Number of compressed packets received per second (for cslip etc.).
+	txcmp/s 
+			Number of compressed packets transmitted per second.
+	rxmcst/s 
+>>>>>>> .r14
 			Number of multicast packets received per second.			
