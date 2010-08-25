@@ -1,5 +1,7 @@
 http://jeremy.zawodny.com/mysql/mytop/
+http://dev.mysql.com/doc/refman/5.1/en/mysqlslap.html
 
+<<<<<<< .mine
 show variables;
 SHOW [full] PROCESSLIST
 SHOW full PROCESSLIST
@@ -16,3 +18,36 @@ grant select on *.* to ksmysqlmonitor@'localhost' identified by 'kingsoftautotes
 update user set Show_view_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
 update user set Super_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
 flush privileges; 
+
+
+select benchmark(1000000,sha1(md5(rand())))\G
+mysqlslap --user=root --auto-generate-sql --concurrency=100
+mysqlslap -a -c 100 --only-print
+
+mysqlslap:
+	-i --iterations 迭代次数
+	-c --concurrency 并发连接数
+	--engine=myisam 指定引擎
+	--query="select count(*) from test1"
+	--auto-generate-sql 随机创建SQL语句
+	--only-print 打印执行的语句
+
+
+=======
+show variables;
+SHOW [full] PROCESSLIST
+SHOW full PROCESSLIST
+show global status;
+show [global] status;
+
+sh /opt/kingsoft/monitor/core/cron/autodefineserver.sh
+vi /opt/kingsoft/monitor/defined/conf
+mysqlUser=ksmysqlmonitor
+mysqlPasswd=kingsoftautotestmysql
+
+use mysql;
+grant select on *.* to ksmysqlmonitor@'localhost' identified by 'kingsoftautotestmysql';
+update user set Show_view_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
+update user set Super_priv='Y' where Host='localhost' and User='ksmysqlmonitor';
+flush privileges; 
+>>>>>>> .r15
