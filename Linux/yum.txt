@@ -1,2 +1,5 @@
+<<<<<<< .mine
 yum groupinstall “Development Tools”
-/etc/yum.conf上的gpgcheck=1改为gpgcheck=0
+/etc/yum.conf上的gpgcheck=1改为gpgcheck=0=======
+yum groupinstall “Development Tools”
+/etc/yum.conf上的gpgcheck=1改为gpgcheck=0>>>>>>> .r14
