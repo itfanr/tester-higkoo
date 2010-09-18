@@ -1,4 +1,5 @@
 <html><head>
+<!-- 演示地址：http://higkoo.host.sk/demo/login.php  -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>演示 - Demo</title></head><body>
 <?php
