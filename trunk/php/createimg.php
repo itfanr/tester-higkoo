@@ -1,4 +1,5 @@
 #!/usr/bin/php
+# createimg.php 1 2000000 3000000
 <?php
 $m = new Mongo('192.168.223.111:27017'); //连接MongoDB 
 $db = $m->photos; //选择数据库
@@ -11,14 +12,11 @@ $redis = new Predis\Client(array(
     'database' => 0
 ));
 
-$file_count = 2000000;
-$px = 720;
-$py = 540;
+$file_count = $argv[3];
 switch($argv[1]){
 case 1:
-    for ($i = 1000000; $i < $file_count; $i++){
-	$im = @imagecreate($px, $py) or die("Cannot Initialize new GD image stream");
-	$background_color = imagecolorallocate($im, 255, 255, 255);
+    for ($i = $argv[2]; $i < $file_count; $i++){
+	$im = imagecreatefromjpeg('/dev/shm/demo.jpg'); or die("Cannot Initialize new GD image stream");
 	$text_color = imagecolorallocate($im, 0, 0, 0);
 	$s = str_pad($i.'',8,'0',STR_PAD_LEFT);
 	imagestring($im, 5, 30, 25, $s ,$text_color);
@@ -29,8 +27,8 @@ case 1:
     }
 break;
 case 2:
-    for ($i = 1000000; $i < $file_count; $i++){
-        $im = @imagecreate($px, $py) or die("Cannot Initialize new GD image stream");
+    for ($i = $argv[2]; $i < $file_count; $i++){
+        $im = @imagecreatefromjpeg('/dev/shm/demo.jpg'); or die("Cannot Initialize new GD image stream");
         $background_color = imagecolorallocate($im, 255, 255, 255);
         $text_color = imagecolorallocate($im, 0, 0, 0);
         $s = str_pad($i.'',8,'0',STR_PAD_LEFT);
@@ -38,9 +36,9 @@ case 2:
         $p = '/dev/shm/'.$s.'.jpg'; 
 	imagejpeg($im,$p);
 	$grid->storeFile($p);
-        $redis->incr('count');
+    $redis->incr('count');
 	unlink($p);
-        imagedestroy($im);
+    imagedestroy($im);
     }
 break;
 }
